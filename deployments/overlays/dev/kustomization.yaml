@@ -5,3 +5,6 @@ bases:
 namespace: dev
 patches:
   - deployment.yaml
+images:
+- name: container-registry.mycloud/app
+  newTag: dev

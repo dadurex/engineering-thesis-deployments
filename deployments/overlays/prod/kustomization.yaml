@@ -5,3 +5,6 @@ bases:
 namespace: prod
 patches:
   - deployment.yaml
+images:
+- name: container-registry.mycloud/app
+  newTag: prod
