@@ -11,7 +11,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/dadurex/engineering-thesis-infrastucuture.git
+    repoURL: https://github.com/dadurex/engineering-thesis-deployments.git
     targetRevision: HEAD
     path: apps
   destination:
