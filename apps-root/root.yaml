@@ -1,0 +1,21 @@
+### This manifest creates an app composed of other apps
+###               !!! IMPORTANT !!!
+### Changes to this manifest need to be applied manually on cluster
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: deploments
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/dadurex/engineering-thesis-infrastucuture.git
+    targetRevision: HEAD
+    path: apps
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: {}

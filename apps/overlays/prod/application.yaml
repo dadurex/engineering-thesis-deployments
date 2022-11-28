@@ -1,0 +1,10 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: deploments
+  namespace: argocd
+spec:
+  source:
+    path: deployments/overlays/prod
+  destination:
+    namespace: prod
