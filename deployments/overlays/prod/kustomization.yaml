@@ -4,8 +4,55 @@ bases:
   - ../../base
 namespace: prod
 namePrefix: prod-
-patches:
-  - deployment.yaml
 images:
 - name: container-registry.mycloud/app
   newTag: prod
+commonLabels:
+  app: prod
+patches:
+  - deployment.yaml
+
+
+# ingress patch  
+resources:
+  - ingress-config-patch.yaml
+replacements:
+# change host names
+- source:
+    kind: ConfigMap
+    name: ingress-config-patch
+    fieldPath: data.host
+  targets:
+  - select:
+      kind: Ingress
+      name: ingress
+    fieldPaths:
+    - spec.tls.0.hosts.0
+    - spec.rules.0.host
+# change external name
+- source:
+    kind: ConfigMap
+    name: ingress-config-patch
+    fieldPath: data.externalName
+  targets:
+    - select:
+        kind: Service
+        name: external-service
+      fieldPaths: 
+        - spec.externalName
+# change again namespaces
+- source:
+    kind: ConfigMap
+    name: ingress-config-patch
+    fieldPath: data.namespace
+  targets:
+    - select:
+        kind: Ingress
+        name: ingress
+      fieldPaths: 
+        - metadata.namespace
+    - select:
+        kind: Service
+        name: external-service
+      fieldPaths: 
+        - metadata.namespace

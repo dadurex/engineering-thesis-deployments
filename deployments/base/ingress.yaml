@@ -28,4 +28,4 @@ metadata:
   namespace: kube-system
 spec:
   type: ExternalName
-  externalName: nvdmirror-service.nvdmirror.svc.cluster.local
+  externalName: service.default.svc.cluster.local
