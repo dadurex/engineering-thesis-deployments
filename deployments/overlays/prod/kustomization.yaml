@@ -3,6 +3,7 @@ kind: Kustomization
 bases:
   - ../../base
 namespace: prod
+namePrefix: prod-
 patches:
   - deployment.yaml
 images:
