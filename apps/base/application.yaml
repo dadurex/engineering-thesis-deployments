@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: deploments
+  name: deployments
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   project: default
   source:
-    repoURL: https://github.com/dadurex/engineering-thesis-infrastucuture.git
+    repoURL: https://github.com/dadurex/engineering-thesis-deployments.git
     targetRevision: HEAD
   destination:
     server: https://kubernetes.default.svc

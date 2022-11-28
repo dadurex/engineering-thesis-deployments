@@ -4,7 +4,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: deploments
+  name: deployments-apps
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
