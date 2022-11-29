@@ -10,6 +10,7 @@ commonLabels:
   app: dev
 patches:
   - path: deployment.yaml
+  - path: congif.yaml
   - path: ingress.yaml
     target:
       kind: Ingress
