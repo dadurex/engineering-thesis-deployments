@@ -7,16 +7,16 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts: 
-        - deployment.mycloud
+        - staging-deployment.mycloud
       secretName: wildcard-secret
   rules:
-    - host: deployment.mycloud
+    - host: staging-deployment.mycloud
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: external-service
+                name: staging-external-service
                 port:
                   number: 80

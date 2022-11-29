@@ -1,0 +1,85 @@
+apiVersion: v1
+data:
+  key: enviroment
+kind: ConfigMap
+metadata:
+  labels:
+    app: staging
+  name: staging-configmap
+  namespace: staging
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: staging
+  name: staging-external-service
+  namespace: staging
+spec:
+  externalName: staging-service.staging.svc.cluster.local
+  selector:
+    app: staging
+  type: ExternalName
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: staging
+  name: staging-service
+  namespace: staging
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: staging
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: staging
+  name: staging-deployment
+  namespace: staging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: staging
+  template:
+    metadata:
+      labels:
+        app: staging
+    spec:
+      containers:
+      - image: container-registry.mycloud/app:staging
+        imagePullPolicy: Always
+        name: deployment
+        ports:
+        - containerPort: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app: staging
+  name: staging-ingress
+  namespace: staging
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: staging-deployment.mycloud
+    http:
+      paths:
+      - backend:
+          service:
+            name: staging-external-service
+            port:
+              number: 80
+        path: /
+        pathType: Prefix
+  tls:
+  - hosts:
+    - staging-deployment.mycloud
+    secretName: wildcard-secret

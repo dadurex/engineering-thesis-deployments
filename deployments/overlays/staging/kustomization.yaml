@@ -1,0 +1,17 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+  - ../../base
+namePrefix: staging-
+namespace: staging
+images:
+- name: container-registry.mycloud/app
+  newTag: staging
+commonLabels:
+  app: staging
+patches:
+  - deployment.yaml
+patchesStrategicMerge:
+  - external-service.yaml
+  - ingress.yaml
+  # - external-service.yaml
