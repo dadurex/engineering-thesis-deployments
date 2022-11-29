@@ -11,7 +11,7 @@ commonLabels:
   app: staging
 patches:
   - deployment.yaml
-  - config.yaml
+  - configmap.yaml
 patchesStrategicMerge:
   - external-service.yaml
   - ingress.yaml

@@ -11,7 +11,7 @@ commonLabels:
   app: prod
 patches:
   - deployment.yaml
-  - config.yaml
+  - configmap.yaml
 
 
 # ingress patch  
