@@ -5,6 +5,6 @@ metadata:
   namespace: argocd
 spec:
   source:
-    path: deployments/overlays/dev
+    path: deployments/overlays/test
   destination:
     namespace: test
