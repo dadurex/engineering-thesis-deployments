@@ -2,12 +2,12 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 bases:
   - ../../base
-namePrefix: dev-
+namePrefix: test-
 images:
 - name: container-registry.mycloud/app
-  newTag: dev
+  newTag: test
 commonLabels:
-  app: dev
+  app: test
 patches:
   - path: deployment.yaml
   - path: configmap.yaml
@@ -19,8 +19,8 @@ patches:
     target:
       kind: Service
       name: external-service
-# use transformer to add namespace 'dev' instead of just
-# namespace: dev
+# use transformer to add namespace 'test' instead of just
+# namespace: test
 # as its ovveride namespaces which are defined in base
 transformers:
   - |-
@@ -28,5 +28,5 @@ transformers:
     kind: NamespaceTransformer
     metadata:
       name: dummy
-      namespace: dev
+      namespace: test
     unsetOnly: true

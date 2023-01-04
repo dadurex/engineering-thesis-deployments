@@ -3,4 +3,5 @@ kind: ConfigMap
 metadata:
   name: configmap
 data:
-  ENVIRONMENT: developmnet
+  ENVIRONMENT: test
+  VERSION: 20230104211654

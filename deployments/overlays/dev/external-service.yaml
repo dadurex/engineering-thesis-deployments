@@ -1,3 +1,0 @@
-- op: replace
-  path: /spec/externalName
-  value: dev-service.dev.svc.cluster.local # service-name.namespace....

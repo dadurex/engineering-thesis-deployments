@@ -4,3 +4,4 @@ metadata:
   name: configmap
 data:
   ENVIRONMENT: base
+  VERSION: base

@@ -7,4 +7,4 @@ spec:
   source:
     path: deployments/overlays/dev
   destination:
-    namespace: dev
+    namespace: test
