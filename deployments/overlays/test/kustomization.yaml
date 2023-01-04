@@ -5,7 +5,7 @@ bases:
 namePrefix: test-
 images:
 - name: container-registry.mycloud/app
-  newTag: test
+  newTag: "20230104211654"
 commonLabels:
   app: test
 patches:
