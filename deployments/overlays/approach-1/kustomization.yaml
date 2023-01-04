@@ -1,0 +1,32 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+  - ../../base
+namePrefix: dev-
+images:
+- name: container-registry.mycloud/app
+  newTag: dev
+commonLabels:
+  app: dev
+patches:
+  - path: deployment.yaml
+  - path: configmap.yaml
+  - path: ingress.yaml
+    target:
+      kind: Ingress
+      name: ingress
+  - path: external-service.yaml
+    target:
+      kind: Service
+      name: external-service
+# use transformer to add namespace 'dev' instead of just
+# namespace: dev
+# as its ovveride namespaces which are defined in base
+transformers:
+  - |-
+    apiVersion: builtin
+    kind: NamespaceTransformer
+    metadata:
+      name: dummy
+      namespace: dev
+    unsetOnly: true

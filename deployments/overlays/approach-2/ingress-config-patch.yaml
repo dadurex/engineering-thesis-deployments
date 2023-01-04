@@ -1,0 +1,11 @@
+
+
+# This is dummy file just for keeping replacements data
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-config-patch
+data:
+  host: prod-deployment.mycloud
+  externalName: prod-service.prod.svc.cluster.local
+  namespace: kube-system
