@@ -6,7 +6,7 @@ namespace: prod
 namePrefix: prod-
 images:
 - name: container-registry.mycloud/app
-  newTag: "20230105222500"
+  newTag: "20230105224408"
 commonLabels:
   app: prod
 patches:
