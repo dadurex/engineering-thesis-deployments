@@ -4,4 +4,4 @@ metadata:
   name: configmap
 data:
   ENVIRONMENT: test
-  VERSION: "20230105011110"
+  VERSION: "20230105033318"
